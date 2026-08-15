@@ -1,0 +1,329 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spotify Clone</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+     <script src="script.js"></script>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-brands fa-spotify"></i>
+            <span>Spotify</span>
+        </div>
+
+        <nav>
+            <a href="#" class="active">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-book"></i>
+                Your Library
+            </a>
+        </nav>
+
+        <div class="library-options">
+            <a href="#">
+                <i class="fa-solid fa-plus"></i>
+                Create Playlist
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-heart"></i>
+                Liked Songs
+            </a>
+        </div>
+
+        <div class="playlists">
+            <p>YOUR PLAYLISTS</p>
+
+            <a href="#">Daily Mix 1</a>
+            <a href="#">Chill Vibes</a>
+            <a href="#">Workout Music</a>
+            <a href="#">Bollywood Hits</a>
+            <a href="#">Lo-Fi Beats</a>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="navigation">
+                <button>
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="What do you want to play?">
+            </div>
+
+            <div class="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="content">
+
+            <h1>Good evening</h1>
+
+            <!-- QUICK PLAYLISTS -->
+            <div class="quick-grid">
+
+                <div class="quick-card">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=500"
+                         alt="Music">
+                    <span>Liked Songs</span>
+                    <button>
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="quick-card">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500"
+                         alt="Music">
+                    <span>Daily Mix 1</span>
+                    <button>
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="quick-card">
+                    <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=500"
+                         alt="Music">
+                    <span>Chill Vibes</span>
+                    <button>
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="quick-card">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=500"
+                         alt="Music">
+                    <span>Workout</span>
+                    <button>
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- MADE FOR YOU -->
+            <div class="section-heading">
+                <h2>Made For You</h2>
+                <a href="#">Show all</a>
+            </div>
+
+            <div class="music-grid">
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=500"
+                         alt="Album">
+
+                    <h3>Daily Mix 1</h3>
+                    <p>Talha Anjum, Seedhe Maut and more</p>
+
+                    <button class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500"
+                         alt="Album">
+
+                    <h3>Daily Mix 2</h3>
+                    <p>Hip-Hop, Rap and Chill</p>
+
+                    <button class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=500"
+                         alt="Album">
+
+                    <h3>Chill Hits</h3>
+                    <p>Relaxing music for your day</p>
+
+                    <button class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=500"
+                         alt="Album">
+
+                    <h3>RapCaviar</h3>
+                    <p>New rap music every week</p>
+
+                    <button class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=500"
+                         alt="Album">
+
+                    <h3>Lo-Fi Beats</h3>
+                    <p>Beats to relax and study</p>
+
+                    <button class="play-button">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!-- RECENTLY PLAYED -->
+            <div class="section-heading">
+                <h2>Recently Played</h2>
+                <a href="#">Show all</a>
+            </div>
+
+            <div class="music-grid">
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500"
+                         alt="Album">
+
+                    <h3>Night Drive</h3>
+                    <p>Late night vibes</p>
+                </div>
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500"
+                         alt="Album">
+
+                    <h3>Party Hits</h3>
+                    <p>Best party songs</p>
+                </div>
+
+                <div class="music-card">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500"
+                         alt="Album">
+
+                    <h3>Festival Mix</h3>
+                    <p>Feel the energy</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MUSIC PLAYER -->
+    <footer class="player">
+
+        <div class="song-info">
+
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=200"
+                 alt="Song">
+
+            <div>
+                <h4>Night Changes</h4>
+                <p>One Direction</p>
+            </div>
+
+            <i class="fa-regular fa-heart"></i>
+
+        </div>
+
+
+        <div class="player-controls">
+
+            <div class="controls">
+
+                <button>
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+
+                <button class="play-main">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+
+            </div>
+
+            <div class="progress">
+
+                <span>1:24</span>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <span>3:46</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="volume">
+
+            <i class="fa-solid fa-volume-high"></i>
+
+            <div class="volume-bar">
+                <div></div>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

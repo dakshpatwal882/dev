@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GateFlow - API Gateway</title>
+
+    <!-- Bootstrap CSS -->
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+
+        /* ---------------- GENERAL ---------------- */
+
+        body {
+            background: #5076d8;
+            color: #294e97;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: rgba(3, 4, 7, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #38bdf8 !important;
+        }
+
+        .nav-link {
+            color: #cbd5e1 !important;
+            margin: 0 8px;
+        }
+
+        .nav-link:hover {
+            color: #38bdf8 !important;
+        }
+
+        /* ---------------- HERO ---------------- */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(10, 16, 19, 0.18),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(34, 4, 105, 0.18),
+                    transparent 35%
+                );
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .hero-title span {
+            color: #f7fafc;
+        }
+
+        .hero-text {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            max-width: 650px;
+        }
+
+        .btn-primary {
+            background: #0ea5e9;
+            border: none;
+            padding: 12px 25px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background: #0284c7;
+        }
+
+        .btn-outline-light {
+            padding: 12px 25px;
+        }
+
+        /* ---------------- API TERMINAL ---------------- */
+
+        .terminal {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #111827;
+            padding: 12px 15px;
+        }
+
+        .circle {
+            height: 10px;
+            width: 10px;
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .red {
+            background: #ef4444;
+        }
+
+        .yellow {
+            background: #facc15;
+        }
+
+        .green {
+            background: #22c55e;
+        }
+
+        .terminal-body {
+            padding: 25px;
+            font-family: monospace;
+            color: #22c55e;
+            font-size: 0.9rem;
+        }
+
+        /* ---------------- FEATURES ---------------- */
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        .section-subtitle {
+            color: #94a3b8;
+        }
+
+        .feature-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: #38bdf8;
+            box-shadow: 0 15px 40px rgba(56, 189, 248, 0.1);
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: rgba(14, 165, 233, 0.15);
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card p {
+            color: #94a3b8;
+        }
+
+        /* ---------------- STATS ---------------- */
+
+        .stats {
+            background: #111827;
+            border-top: 1px solid #1e293b;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .stat-number {
+            color: #38bdf8;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+        }
+
+        /* ---------------- API SECTION ---------------- */
+
+        .api-box {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .method {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .endpoint {
+            color: #f8fafc;
+        }
+
+        /* ---------------- CTA ---------------- */
+
+        .cta {
+            background: linear-gradient(
+                135deg,
+                #0369a1,
+                #4c1d95
+            );
+            border-radius: 25px;
+            padding: 70px 30px;
+        }
+
+        /* ---------------- FOOTER ---------------- */
+
+        footer {
+            background: #020617;
+            padding: 40px 0;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: #38bdf8;
+        }
+
+        /* ---------------- RESPONSIVE ---------------- */
+
+        @media(max-width: 768px) {
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero-text {
+                margin: auto;
+            }
+
+            .terminal {
+                margin-top: 40px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="#">
+            <i class="bi bi-diagram-3"></i>
+            GateFlow
+        </a>
+
+        <!-- Mobile Menu Button -->
+
+        <button 
+            class="navbar-toggler" 
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation -->
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">
+                        Features
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#api">
+                        API
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#docs">
+                        Documentation
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#pricing">
+                        Pricing
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-primary" href="#">
+                        Get Started
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- LEFT -->
+
+            <div class="col-lg-6">
+
+                <span class="badge bg-primary mb-3">
+                    ⚡ Next Generation API Gateway
+                </span>
+
+                <h1 class="hero-title">
+                    One Gateway.
+                    <br>
+                    <span>Infinite APIs.</span>
+                </h1>
+
+                <p class="hero-text mt-4">
+                    Secure, manage and monitor all your APIs from a
+                    single intelligent gateway. Built for modern
+                    microservices and high-performance applications.
+                </p>
+
+                <div class="mt-4">
+
+                    <a href="#" class="btn btn-primary me-2">
+                        Start Building
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <a href="#docs" class="btn btn-outline-light">
+                        Read Docs
+                    </a>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <span class="badge text-bg-dark me-2">
+                        REST
+                    </span>
+
+                    <span class="badge text-bg-dark me-2">
+                        GraphQL
+                    </span>
+
+                    <span class="badge text-bg-dark me-2">
+                        WebSocket
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT TERMINAL -->
+
+            <div class="col-lg-6">
+
+                <div class="terminal">
+
+                    <div class="terminal-header">
+
+                        <span class="circle red"></span>
+                        <span class="circle yellow"></span>
+                        <span class="circle green"></span>
+
+                    </div>
+
+                    <div class="terminal-body">
+
+                        <p>$ curl https://api.gateflow.dev/users</p>
+
+                        <p>
+                            <span style="color:#38bdf8;">
+                                GET
+                            </span>
+                            /api/v1/users
+                        </p>
+
+                        <p>{</p>
+
+                        <p class="ms-3">
+                            "status": 200,
+                        </p>
+
+                        <p class="ms-3">
+                            "gateway": "GateFlow",
+                        </p>
+
+                        <p class="ms-3">
+                            "latency": "32ms",
+                        </p>
+
+                        <p class="ms-3">
+                            "requests": 12482
+                        </p>
+
+                        <p>}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats py-5">
+
+    <div class="container">
+
+        <div class="row text-center">
+
+            <div class="col-md-3 col-6 mb-4 mb-md-0">
+
+                <div class="stat-number">
+                    99.99%
+                </div>
+
+                <div class="stat-label">
+                    Uptime
+                </div>
+
+            </div>
+
+            <div class="col-md-3 col-6 mb-4 mb-md-0">
+
+                <div class="stat-number">
+                    10M+
+                </div>
+
+                <div class="stat-label">
+                    Requests / Day
+                </div>
+
+            </div>
+
+            <div class="col-md-3 col-6">
+
+                <div class="stat-number">
+                    35ms
+                </div>
+
+                <div class="stat-label">
+                    Avg Latency
+                </div>
+
+            </div>
+
+            <div class="col-md-3 col-6">
+
+                <div class="stat-number">
+                    500+
+                </div>
+
+                <div class="stat-label">
+                    APIs Connected
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section" id="features">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="badge bg-primary mb-3">
+                FEATURES
+            </span>
+
+            <h2 class="section-title">
+                Everything your APIs need
+            </h2>
+
+            <p class="section-subtitle">
+                Powerful tools to secure, control and monitor your APIs.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- CARD 1 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+
+                    <h4>
+                        API Security
+                    </h4>
+
+                    <p>
+                        Protect your APIs using authentication,
+                        authorization, API keys and advanced security
+                        policies.
+                    </p>
+
+                    <a href="#" class="text-info text-decoration-none">
+                        Learn more →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+
+                    <h4>
+                        Rate Limiting
+                    </h4>
+
+                    <p>
+                        Control traffic and prevent abuse with
+                        customizable request limits and throttling.
+                    </p>
+
+                    <a href="#" class="text-info text-decoration-none">
+                        Learn more →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-bar-chart"></i>
+                    </div>
+
+                    <h4>
+                        Analytics
+                    </h4>
+
+                    <p>
+                        Monitor API performance, traffic, errors and
+                        latency using real-time analytics.
+                    </p>
+
+                    <a href="#" class="text-info text-decoration-none">
+                        Learn more →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+
+                    <h4>
+                        Load Balancing
+                    </h4>
+
+                    <p>
+                        Distribute incoming traffic across multiple
+                        backend services automatically.
+                    </p>
+
+                    <a href="#" class="text-info text-decoration-none">
+                        Learn more →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 5 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-diagram-3"></i>
+                    </div>
+
+                    <h4>
+                        Microservices
+                    </h4>
+
+                    <p>
+                        Connect multiple microservices through a single
+                        API gateway endpoint.
+                    </p>
+
+                    <a href="#" class="text-info text-decoration-none">
+                        Learn more →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 6 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+
+                    <h4>
+                        High Performance
+                    </h4>
+
+                    <p>
+                        Handle millions of requests with low latency
+                        and highly optimized routing.
+                    </p>
+
+                    <a href="#" class="text-info text-decoration-none">
+                        Learn more →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= API EXAMPLE ================= -->
+
+<section class="section" id="api">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <span class="badge bg-primary mb-3">
+                    SIMPLE API
+                </span>
+
+                <h2 class="section-title">
+                    Connect your services in minutes.
+                </h2>
+
+                <p class="section-subtitle mt-3">
+                    Route requests from a single public endpoint to
+                    multiple backend services without exposing your
+                    internal architecture.
+                </p>
+
+                <button class="btn btn-primary mt-3">
+                    Explore API
+                </button>
+
+            </div>
+
+
+            <div class="col-lg-6">
+
+                <div class="api-box">
+
+                    <div class="d-flex justify-content-between mb-4">
+
+                        <span class="method">
+                            GET
+                        </span>
+
+                        <span class="badge bg-success">
+                            200 OK
+                        </span>
+
+                    </div>
+
+                    <h5 class="endpoint">
+                        /api/v1/products
+                    </h5>
+
+                    <hr class="border-secondary">
+
+                    <pre class="text-info mb-0">
+{
+  "success": true,
+  "data": {
+    "products": 248,
+    "latency": "24ms"
+  }
+}</pre>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DOCUMENTATION ================= -->
+
+<section class="section" id="docs">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="badge bg-primary mb-3">
+                DEVELOPER FRIENDLY
+            </span>
+
+            <h2 class="section-title">
+                Built for developers
+            </h2>
+
+            <p class="section-subtitle">
+                Everything you need to integrate your APIs quickly.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="feature-card text-center">
+
+                    <i class="bi bi-book fs-1 text-info"></i>
+
+                    <h4 class="mt-3">
+                        Documentation
+                    </h4>
+
+                    <p>
+                        Detailed guides and API references.
+                    </p>
+
+                    <button class="btn btn-outline-info">
+                        Read Docs
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card text-center">
+
+                    <i class="bi bi-terminal fs-1 text-info"></i>
+
+                    <h4 class="mt-3">
+                        CLI Tools
+                    </h4>
+
+                    <p>
+                        Manage your gateway directly from your terminal.
+                    </p>
+
+                    <button class="btn btn-outline-info">
+                        Install CLI
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card text-center">
+
+                    <i class="bi bi-github fs-1 text-info"></i>
+
+                    <h4 class="mt-3">
+                        Open Source
+                    </h4>
+
+                    <p>
+                        Build, customize and extend your gateway.
+                    </p>
+
+                    <button class="btn btn-outline-info">
+                        View GitHub
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="cta text-center">
+
+            <h2 class="display-5 fw-bold">
+                Ready to simplify your APIs?
+            </h2>
+
+            <p class="mt-3 mb-4">
+                Start building your API infrastructure today.
+            </p>
+
+            <button class="btn btn-light btn-lg me-2">
+                Get Started
+            </button>
+
+            <button class="btn btn-outline-light btn-lg">
+                Contact Sales
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-5 mb-4">
+
+                <h4 class="text-info">
+                    <i class="bi bi-diagram-3"></i>
+                    GateFlow
+                </h4>
+
+                <p class="text-secondary">
+                    Modern API gateway infrastructure for
+                    high-performance applications.
+                </p>
+
+            </div>
+
+
+            <div class="col-md-2 mb-4">
+
+                <h6>
+                    Product
+                </h6>
+
+                <a href="#" class="footer-link d-block mt-2">
+                    Features
+                </a>
+
+                <a href="#" class="footer-link d-block mt-2">
+                    Pricing
+                </a>
+
+                <a href="#" class="footer-link d-block mt-2">
+                    Security
+                </a>
+
+            </div>
+
+
+            <div class="col-md-2 mb-4">
+
+                <h6>
+                    Developers
+                </h6>
+
+                <a href="#" class="footer-link d-block mt-2">
+                    Documentation
+                </a>
+
+                <a href="#" class="footer-link d-block mt-2">
+                    API Reference
+                </a>
+
+                <a href="#" class="footer-link d-block mt-2">
+                    GitHub
+                </a>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <h6>
+                    Connect
+                </h6>
+
+                <div class="fs-4 mt-3">
+
+                    <i class="bi bi-github me-3"></i>
+
+                    <i class="bi bi-twitter-x me-3"></i>
+
+                    <i class="bi bi-linkedin"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <hr class="border-secondary">
+
+        <div class="text-center text-secondary">
+
+            © 2026 GateFlow. All rights reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JavaScript -->
+
+<script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+</html>

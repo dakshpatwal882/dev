@@ -1,0 +1,21 @@
+#outer{
+    height: 200px;
+    width: 70px;
+    border: black solid 2px;
+}
+.inner{
+    height: 50px;
+    width: 50px;
+    border: black solid 2px;
+    margin: 10px;
+    border-radius: 50px;
+}
+#r{
+    background-color: red;
+}
+#y{
+    background-color: yellow;
+}
+#g{
+    background-color: green;
+}

@@ -1,0 +1,375 @@
+/* ==========================================================================
+   DAKSH PATWAL — Sidebar Navigation
+   Concept: a museum wall placard. Deep gallery-wall ink, brass hardware,
+   corner-bracket "framing" marks on hover — the same gesture a curator
+   uses to spotlight a piece on the wall.
+   ========================================================================== */
+
+:root {
+  --ink: #141d19;          /* gallery wall at night */
+  --ink-soft: #1d2a24;     /* sidebar panel surface */
+  --parchment: #ece4d3;    /* label paper / text */
+  --parchment-dim: #a8a196;/* secondary text */
+  --brass: #c6a15b;        /* placard hardware / accent */
+  --brass-dim: #7c6738;    /* recessed brass, borders */
+
+  --sidebar-w: 300px;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(198, 161, 91, 0.08), transparent 60%),
+    var(--ink);
+  color: var(--parchment);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main_box {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------- */
+/* Toggle mechanics                                                       */
+/* --------------------------------------------------------------------- */
+
+#check {
+  display: none;
+}
+
+/* --------------------------------------------------------------------- */
+/* Hamburger button                                                       */
+/* --------------------------------------------------------------------- */
+
+.btn_one {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 20;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--brass-dim);
+  border-radius: 50%;
+  background: var(--ink-soft);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.25s ease;
+}
+
+.btn_one label {
+  display: flex;
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+
+.btn_one:hover {
+  border-color: var(--brass);
+  transform: translateY(-1px);
+}
+
+.btn_one label i {
+  color: var(--parchment) !important;
+  transition: color 0.25s ease;
+}
+
+.btn_one:hover label i {
+  color: var(--brass) !important;
+}
+
+#check:checked ~ .btn_one {
+  opacity: 0;
+  transform: translateX(-10px);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------- */
+/* Sidebar panel                                                          */
+/* --------------------------------------------------------------------- */
+
+.sidebar_menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: var(--sidebar-w);
+  max-width: 85vw;
+  height: 100%;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink-soft);
+  border-right: 1px solid var(--brass-dim);
+  box-shadow: 40px 0 60px rgba(0, 0, 0, 0.35);
+  transform: translateX(-105%);
+  transition: transform 0.45s var(--ease);
+  overflow-y: auto;
+}
+
+#check:checked ~ .sidebar_menu {
+  transform: translateX(0);
+}
+
+/* thin scrollbar, brass on ink */
+.sidebar_menu {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brass-dim) transparent;
+}
+
+.sidebar_menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar_menu::-webkit-scrollbar-thumb {
+  background: var(--brass-dim);
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------- */
+/* Logo — treated like an engraved placard title                         */
+/* --------------------------------------------------------------------- */
+
+.logo {
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--brass-dim);
+}
+
+.logo a {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: var(--parchment);
+  transition: color 0.25s ease, letter-spacing 0.35s ease;
+}
+
+.logo a::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  margin-top: 10px;
+  background: var(--brass);
+  transition: width 0.35s var(--ease);
+}
+
+.logo a:hover {
+  color: var(--brass);
+  letter-spacing: 0.28em;
+}
+
+.logo a:hover::after {
+  width: 56px;
+}
+
+/* --------------------------------------------------------------------- */
+/* Close button                                                           */
+/* --------------------------------------------------------------------- */
+
+.btn_two {
+  position: absolute;
+  top: 30px;
+  right: 26px;
+}
+
+.btn_two label {
+  display: flex;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.btn_two label i {
+  transition: transform 0.35s var(--ease), color 0.25s ease;
+}
+
+.btn_two:hover label i {
+  color: var(--brass) !important;
+  transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------- */
+/* Nav menu — corner-bracket "framing" on hover, like a spotlighted label */
+/* --------------------------------------------------------------------- */
+
+.menu {
+  flex: 1;
+}
+
+.menu ul li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 16px;
+  margin-bottom: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: padding-left 0.3s var(--ease);
+}
+
+.menu ul li i {
+  width: 18px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--brass-dim);
+  transition: color 0.25s ease;
+}
+
+.menu ul li a {
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--parchment-dim);
+  transition: color 0.25s ease;
+}
+
+/* corner brackets, hidden until hover/focus */
+.menu ul li::before,
+.menu ul li::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--brass);
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.3s var(--ease);
+}
+
+.menu ul li::before {
+  top: 4px;
+  left: 2px;
+  border-top: 1px solid var(--brass);
+  border-left: 1px solid var(--brass);
+  transform: translate(4px, 4px);
+}
+
+.menu ul li::after {
+  bottom: 4px;
+  right: 2px;
+  border-bottom: 1px solid var(--brass);
+  border-right: 1px solid var(--brass);
+  transform: translate(-4px, -4px);
+}
+
+.menu ul li:hover,
+.menu ul li:focus-within {
+  padding-left: 22px;
+}
+
+.menu ul li:hover i,
+.menu ul li:focus-within i {
+  color: var(--brass);
+}
+
+.menu ul li:hover a,
+.menu ul li:focus-within a {
+  color: var(--parchment);
+}
+
+.menu ul li:hover::before,
+.menu ul li:hover::after,
+.menu ul li:focus-within::before,
+.menu ul li:focus-within::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* --------------------------------------------------------------------- */
+/* Social row                                                             */
+/* --------------------------------------------------------------------- */
+
+.social_media {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid var(--brass-dim);
+}
+
+.social_media ul {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social_media ul a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--brass-dim);
+  border-radius: 50%;
+  font-size: 0.85rem;
+  color: var(--parchment-dim);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s var(--ease);
+}
+
+.social_media ul a:hover {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------- */
+/* Accessibility                                                          */
+/* --------------------------------------------------------------------- */
+
+.btn_one label:focus-visible,
+.btn_two label:focus-visible,
+.menu ul li a:focus-visible,
+.social_media ul a:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------- */
+/* Responsive                                                             */
+/* --------------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+  :root {
+    --sidebar-w: 100%;
+  }
+
+  .sidebar_menu {
+    max-width: 100vw;
+    padding: 28px 22px;
+  }
+
+  .btn_one {
+    top: 16px;
+    left: 16px;
+  }
+}

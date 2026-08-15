@@ -1,0 +1,17 @@
+h1{
+    background-color: rgb(178, 211, 211);
+    height: 40px;
+    width:500px;
+    border: 5px black dotted;
+    border-top: 6px gold solid;
+    padding: 5px 3px 4px;
+}
+div{
+    background-color: rgb(15, 226, 7);
+    height: 150px;
+    width:500px;
+    border: 5px rgb(238, 19, 19) solid;
+    border-radius: 20px ;
+    padding: 50px 30px 40px;
+    margin: 10px red;
+}
